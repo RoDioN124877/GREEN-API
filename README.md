@@ -6,6 +6,21 @@
 
 Тестовое задание на позицию «Фронтенд разработчик React».
 
+**Демо:** https://USERNAME.github.io/REPO/ — подставьте свои логин и имя репозитория после
+первого деплоя.
+
+## Скриншоты
+
+| Вход | Переписка |
+| --- | --- |
+| ![Экран входа](docs/screenshots/01-login.png) | ![Переписка](docs/screenshots/04-conversation.png) |
+
+| Создание чата по номеру | Мобильная вёрстка |
+| --- | --- |
+| ![Новый чат](docs/screenshots/06-new-chat.png) | ![Мобильная версия](docs/screenshots/07-mobile.png) |
+
+Скриншоты сняты на демонстрационных данных.
+
 ## Возможности
 
 - вход по `idInstance` и `apiTokenInstance` (данные сохраняются в `localStorage`);
@@ -99,6 +114,24 @@ src/
 очереди через `DELETE .../deleteNotification/{token}/{receiptId}`, после чего цикл повторяется.
 Обрабатываются `incomingMessageReceived`, `outgoingMessageReceived`, `outgoingAPIMessageReceived`
 и `stateInstanceChanged`; дубликаты отсекаются по `idMessage`.
+
+## Деплой на GitHub Pages
+
+В репозитории есть workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
+при пуше в `main`/`master` он прогоняет проверку типов, линтер, собирает проект и публикует
+`dist` на GitHub Pages. Чтобы он заработал, в настройках репозитория нужно один раз выбрать
+**Settings → Pages → Source → GitHub Actions**.
+
+Сборка использует относительные пути (`base: './'`), поэтому отдельная настройка
+имени репозитория не требуется.
+
+## Безопасность
+
+- Приложение полностью клиентское: бэкенда нет, собственного сервера нет.
+- `idInstance` и `apiTokenInstance` вводит сам пользователь. Они хранятся только в
+  `localStorage` его браузера и отправляются исключительно на `api.green-api.com`.
+- В репозитории и в опубликованной сборке нет никаких ключей и токенов.
+- Кнопка «Выйти» удаляет сохранённые учётные данные из браузера.
 
 ## Ограничения
 
